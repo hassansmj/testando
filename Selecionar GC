@@ -1,0 +1,35 @@
+// @name Selecionador de GC
+// @step {gameUrl}/game.php?screen=am_village&group={groupId}
+// @param(string) groupId=0
+// @param(string) nomeOpcao
+
+function delay (time, random = 0) {
+    return new Promise(function (resolve) {
+        setTimeout(resolve, time + ~~(Math.random() * random));
+    });
+}
+
+new Promise(async (resolve, reject) => {
+
+const nomeOpcao = TWA.nomeOpcao;
+console.log("OPCAO USADA: ", nomeOpcao);
+
+const selectField = document.querySelector('select[name="template"]')
+console.log("selectField USADO: ", selectField);
+
+const itemOpcao = Array.from(selectField.querySelectorAll('option'))
+    .find(e => e.innerText.includes(nomeOpcao));
+console.log("itemOpcao USADO: ", itemOpcao);
+
+itemOpcao.selected = true;
+
+await delay(3000, 1000);
+document.getElementById("select_all_top").click();
+console.log("clicou no botao 1");
+
+await delay(3000, 1000);
+document.querySelector(".vis_item .btn").click();
+console.log("clicou no botao 2");
+
+    resolve();
+})
