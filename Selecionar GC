@@ -22,6 +22,7 @@ const itemOpcao = Array.from(selectField.querySelectorAll('option'))
 console.log("itemOpcao USADO: ", itemOpcao);
 
 itemOpcao.selected = true;
+$(selectField).trigger('change');
 
 await delay(3000, 1000);
 document.getElementById("select_all_top").click();
