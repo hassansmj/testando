@@ -11,26 +11,24 @@ function delay (time, random = 0) {
 
 new Promise(async (resolve, reject) => {
 
-const nomeOpcao = TWA.nomeOpcao;
-console.log("OPCAO USADA: ", nomeOpcao);
+    const nomeOpcao = TWA.nomeOpcao;
+    console.log("OPCAO USADA: ", nomeOpcao);
 
-const selectField = document.querySelector('select[name="template"]')
-console.log("selectField USADO: ", selectField);
+    const selectField = $('select[name="template"]');
+    console.log("selectField: ", selectField);
 
-const itemOpcao = Array.from(selectField.querySelectorAll('option'))
-    .find(e => e.innerText.includes(nomeOpcao));
-console.log("itemOpcao USADO: ", itemOpcao);
+    const opcaoField = selectField.find(`option:contains("${nomeOpcao}")`);
+    $('select[name="template"]').val(
+        opcaoField.val()
+    ).change();
 
-itemOpcao.selected = true;
-$(selectField).trigger('change');
+    await delay(3000, 1000);
+    $(".select_all_top").click();
+    console.log("clicou no botao .select_all_top");
 
-await delay(3000, 1000);
-document.getElementById("select_all_top").click();
-console.log("clicou no botao 1");
-
-await delay(5000, 1000);
-document.querySelector(".vis_item .btn").click();
-console.log("clicou no botao 2");
+    await delay(5000, 1000);
+    $(".vis_item .btn").click();
+    console.log("clicou no botao .vis_item .btn");
 
     resolve();
 })
