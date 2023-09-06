@@ -21,7 +21,7 @@ new Promise(async (resolve, reject) => {
     selectField.val(opcaoField.val()).change();
 
     await delay(3000, 1000);
-    $(".select_all_top").click();
+    $("#select_all_top").click();
     console.log("clicou no botao .select_all_top");
 
     await delay(5000, 1000);
