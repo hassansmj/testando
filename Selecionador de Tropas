@@ -11,14 +11,17 @@ function delay (time, random = 0) {
 
 new Promise(async (resolve, reject) => {
 
-    const nomeOpcao = TWA.nomeOpcao;
-    console.log("OPCAO USADA: ", nomeOpcao);
+    const nomeOpcaoDesejada = nomeOpcao;
 
-    const selectField = $('Accountmanager.applyTrooplate(this, false)');
-    console.log("selectField: ", selectField);
 
-    const opcaoField = selectField.find(`option:contains("${nomeOpcao}")`);
-    selectField.val(opcaoField.val()).change();
+    const $comboBox = $('select[onchange="Accountmanager.applyTrooplate(this, false)"]');
+
+
+    $comboBox.val(function() {
+      return $("option", this).filter(function() {
+        return $(this).text() === nomeOpcaoDesejada;
+      }).val();
+});
 
     await delay(3000, 1000);
    $("input#select_all.selectAll").click();
