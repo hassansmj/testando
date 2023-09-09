@@ -11,7 +11,7 @@ function delay (time, random = 0) {
 
 new Promise(async (resolve, reject) => {
 
-    const nomeOpcaoDesejada = nomeOpcao;
+    const nomeOpcaoDesejada = TWA.nomeOpcao;
 
 
     const $comboBox = $('select[onchange="Accountmanager.applyTrooplate(this, false)"]');
