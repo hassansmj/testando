@@ -1,0 +1,32 @@
+// @name Selecionador de Tropas
+// @step {gameUrl}/game.php?screen=am_troops&group={groupId}
+// @param(string) groupId=0
+// @param(string) nomeOpcao
+
+function delay (time, random = 0) {
+    return new Promise(function (resolve) {
+        setTimeout(resolve, time + ~~(Math.random() * random));
+    });
+}
+
+new Promise(async (resolve, reject) => {
+
+    const nomeOpcao = TWA.nomeOpcao;
+    console.log("OPCAO USADA: ", nomeOpcao);
+
+    const selectField = $('Accountmanager.applyTrooplate(this, false)');
+    console.log("selectField: ", selectField);
+
+    const opcaoField = selectField.find(`option:contains("${nomeOpcao}")`);
+    selectField.val(opcaoField.val()).change();
+
+    await delay(3000, 1000);
+   $("input#select_all.selectAll").click();
+    console.log("clicou no botao input#select_all.selectAll");
+
+    await delay(5000, 1000);
+    $("input.btn")[0].click();;
+    console.log("clicou no botao input.btn");
+
+    resolve();
+})
